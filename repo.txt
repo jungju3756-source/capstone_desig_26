@@ -1,0 +1,2 @@
+프로젝트명: IoT 환경 모니터링 시스템 (LAMP Stack 기반)
+GitHub 주소: https://github.com/jungju3756-source/capstone_desig_26
