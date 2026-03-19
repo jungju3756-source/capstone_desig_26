@@ -1,2 +1,65 @@
-프로젝트명: IoT 환경 모니터링 시스템 (LAMP Stack 기반)
-GitHub 주소: https://github.com/jungju3756-source/capstone_desig_26
+==========================================
+ IoT 환경 모니터링 시스템 (LAMP Stack 기반)
+==========================================
+
+■ GitHub 주소
+  https://github.com/jungju3756-source/capstone_desig_26
+
+■ 프로젝트 개요
+  VMware 위에 구동되는 Zorin OS(Ubuntu 24.04) 환경에서 LAMP Stack을 구축하고,
+  Python으로 가상의 IoT 센서 데이터(온도, 습도, CO2)를 1초 간격으로 생성하여
+  MariaDB에 저장한 뒤, PHP 웹 페이지를 통해 실시간으로 모니터링하는 시스템.
+
+■ 기술 스택
+  - OS          : Zorin OS (Ubuntu 24.04 LTS) on VMware Workstation
+  - Web Server  : Apache2
+  - Database    : MariaDB 10.11
+  - Server Side : PHP 8.3
+  - Data 생성   : Python 3.12 (mysql-connector-python)
+  - 시각화      : Chart.js (Line Graph)
+  - 버전 관리   : Git / GitHub
+
+■ 주요 기능
+  1. 가상 IoT 센서 데이터 자동 생성 (injector.py)
+     - 온도: 15.0 ~ 40.0 °C
+     - 습도: 30.0 ~ 90.0 %
+     - CO2: 400 ~ 2000 ppm
+     - 1초 간격으로 MariaDB에 INSERT
+
+  2. 실시간 모니터링 웹 페이지 (monitor.php)
+     - 현재 온도 / 습도 / CO2 대시보드 카드 표시
+     - 온도 > 35°C, CO2 > 1500ppm 시 경고 표시
+     - Chart.js 기반 실시간 라인 그래프 (최근 100건)
+     - 최근 20건 데이터 테이블 표시
+     - 5초마다 자동 새로고침
+
+  3. 데이터베이스 구조 (MariaDB)
+     - Database : iot_monitor
+     - Table    : sensor_data
+       · id          INT AUTO_INCREMENT PK
+       · temperature FLOAT
+       · humidity    FLOAT
+       · co2         INT
+       · recorded_at DATETIME DEFAULT CURRENT_TIMESTAMP
+
+■ 파일 구조
+  capstone_desig_26/
+  ├── project.md      # 프로젝트 계획 및 목표
+  ├── process.md      # 구축 과정 + Mermaid 블록 다이어그램
+  ├── db_setup.sql    # DB 및 테이블 생성 SQL
+  ├── injector.py     # 가상 IoT 데이터 생성 스크립트
+  ├── monitor.php     # 실시간 모니터링 PHP 페이지
+  ├── README.md       # 프로젝트 소개
+  └── repo.txt        # 본 파일
+
+■ 실행 방법
+  1. sudo systemctl start mariadb
+  2. sudo mysql -u root < db_setup.sql
+  3. python3 injector.py &
+  4. sudo cp monitor.php /var/www/html/
+  5. 브라우저에서 http://<서버IP>/monitor.php 접속
+
+■ 접속 주소 (로컬)
+  http://192.168.0.53/monitor.php
+
+==========================================
