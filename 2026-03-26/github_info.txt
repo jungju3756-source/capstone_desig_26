@@ -1,0 +1,18 @@
+GitHub Repository 정보
+======================
+
+Repository URL : https://github.com/jungju3756-source/capstone_desig_26
+작업 폴더      : 2026-03-26/
+작업 날짜      : 2026-03-26
+
+Push 명령어
+-----------
+git remote add origin https://github.com/jungju3756-source/capstone_desig_26.git
+git push -u origin master
+
+주요 파일
+---------
+- injector.py   : 난수 생성 → MySQL 저장 + MQTT publish
+- mqtt-pub.py   : MQTT 단독 publish 테스트용
+- viewer.py     : 터미널 실시간 DB 뷰어
+- project.md    : 프로젝트 설명 및 Mermaid 흐름도
